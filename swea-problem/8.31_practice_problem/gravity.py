@@ -15,17 +15,33 @@
 T = int(input())
 
 for i in range(1, T+1):
+    # 가로 길이
     N = int(input())
     arr = list(map(int, input().split()))
-    # 비교용 arr 새로 생성
-    arr_n = arr.copy()
-    for x in range(len(arr)-1, 0, -1):
-        for y in range(x):
-            if arr_n[y] > arr_n[y+1]:
-                arr_n[y], arr_n[y+1] = arr_n[y+1], arr_n[y]
 
     max_v = 0
-    for x in range(len(arr)):
-        if arr[x] - arr_n[x] > max_v: max_v = arr[x] - arr_n[x]
 
+    for x in range(N-1):
+        cnt = 0
+        for y in range(1, N):
+            if N <= x + y : break
+            if arr[x] > arr[x + y]: cnt += 1
+        if cnt > max_v : max_v = cnt
     print(f'#{i} {max_v}')
+
+
+
+    # ===========================================
+
+    # # 비교용 arr 새로 생성
+    # arr_n = arr.copy()
+    # for x in range(len(arr)-1, 0, -1):
+    #     for y in range(x):
+    #         if arr_n[y] > arr_n[y+1]:
+    #             arr_n[y], arr_n[y+1] = arr_n[y+1], arr_n[y]
+    #
+    # max_v = 0
+    # for x in range(len(arr)):
+    #     if arr[x] - arr_n[x] > max_v: max_v = arr[x] - arr_n[x]
+    #
+    # print(f'#{i} {max_v}')
